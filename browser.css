@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+body{border: 5px;
+    box-shadow: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    height: 300px;
+    margin: 100px 50px 0px 50px;
+}

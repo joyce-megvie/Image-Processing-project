@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Face Detection and Recognition</title>
+    </head>
+    <body>
+        <h1>Face Detection and Recognition</h1>
+        <input type="file" id = "fileInput">
+        <button id="detectButton">Detect</button>
+        <div id = "results"></div>
+        <script>
+            const fileInput = document.getElementById('fileInput');
+            const detectButton = document.getElementById('detectButton');
+            const resultsDiv = document.getElementById('results');
+
+            detectButton.addEventListener('click', () => {
+                //Get the selected file
+            const file = fileInput.files[0];
+            
+                //create a form data object and append the file to it
+            const formData = new FormData();
+        formData.append('image', file);
+    
+                //send a POST request to the server
+            fetch('/api/upload', {method:'POST', body: formData}).then(response => response.json()).then(data => {
+
+                //Display the results
+                resultsDiv.innerHTML = '';
+                data.results.forEach(result => {
+                    const p = document.createElement('p');
+                    p.textContent = `ID: ${result.id}, Confidence: ${result.confidence}`;
+                    resultsDiv.appendChild(p);
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
